@@ -11,7 +11,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://thelongexposure.com/btd";
+$config['base_url']	= "http://btd.local";
 
 /*
 |--------------------------------------------------------------------------
