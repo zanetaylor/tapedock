@@ -19,9 +19,9 @@ class Tape_model extends Model
 		}
 	}
 	
-	function create()
+	function create($data)
 	{
-		
+		$query = $this->db->insert('tapes', $data);
 	}
 }
 ?>
