@@ -4,18 +4,15 @@
 	</head>
 	<body>
 		<?=validation_errors()?>
-		<?=form_open('tape/create')?>
+		<?=$error?>
+		<?=form_open_multipart('tape/upload')?>
 		<?
-			$title_input = array(
-				'name'	=> 'title',
-				'id'	=> 'title',
-				'value'	=> set_value('title')
+			$track_input = array(
+				'name'	=> 'track',
+				'id'	=> 'track',
+				'value'	=> set_value('track')
 			);
-			$short_desc_input = array(
-				'name'	=> 'short_desc',
-				'id'	=> 'short_desc',
-				'value'	=> set_value('short_desc')
-			);
+			
 			$submit_button = array(
 				'id'		=> 'submit',
 				'type'		=> 'submit',
@@ -23,10 +20,8 @@
 			);
 		?>
 			<dl>
-				<dt><label for="title">Title</label></dt>
-					<dd><?=form_input($title_input)?></dd>
-				<dt><label for="short_desc">Description</label></dt>
-					<dd><?=form_input($short_desc_input)?></dd>
+				<dt><label for="track">Track 1</label></dt>
+					<dd><?=form_upload($track_input)?></dd>
 					
 				<dt><?=form_button($submit_button)?></dt>
 			</dl>

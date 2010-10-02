@@ -13,25 +13,39 @@
 		
 		function create()
 		{
-			$this->load->library('form_validation');
+			$data['page_title'] = "Create a Tape";
+			$data['error'] = "";
+			$this->load->view('create_view', $data);
+		}
+		
+		function upload()
+		{
+			/*
+			$tape_data = array(
+				'track' => $this->input->post('track')
+			);
+			*/
 			
-			$this->form_validation->set_rules('title', 'Title', 'required|trim');
-			$this->form_validation->set_rules('short_desc', 'Description', 'trim');
+			$config['upload_path'] = 'uploads/';
+			$config['allowed_types'] = 'mp3';
+			$config['max_size']	= '0';
+
+			$this->load->library('upload', $config);
 			
-			// validated?
-			if ($this->form_validation->run() == FALSE)
+			if ( ! $this->upload->do_upload('track'))
 			{
 				$data['page_title'] = "Create a Tape";
+				$data['error'] = $this->upload->display_errors();
+
 				$this->load->view('create_view', $data);
-			} else
-			{	
-				// validated
-				$tape_data = array(
-					'title' => $this->input->post('title'),
-					'short_desc' => $this->input->post('short_desc')
-				);
+			}	
+			else
+			{
+				$data = array('upload_data' => $this->upload->data());
+
+				//$this->load->view('upload_success', $data);
 				
-				save($tape_data);
+				$this->save($data);
 			}
 		}
 		
@@ -46,6 +60,7 @@
 			if ($this->form_validation->run() == FALSE)
 			{
 				$data['page_title'] = "Save Your Tape";
+				$data['tape_data'] = $tape_data;
 				$this->load->view('save_view', $data);
 			} else
 			{	
@@ -62,6 +77,8 @@
 
 				$data['page_title'] = "Save Your Tape";
 				$data['tape_data'] = $query;
+				
+				$this->load->view('share_view', $data);
 				
 				// SUCCESS / SHARE PAGE
 			}
