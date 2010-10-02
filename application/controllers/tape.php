@@ -20,18 +20,16 @@
 		
 		function upload()
 		{
-			/*
-			$tape_data = array(
-				'track' => $this->input->post('track')
-			);
-			*/
+			// set temp directory for tracks...will be dependent on logged-in USER ID
+			$temp_track_dir = "uploads/1/temp/";
 			
-			$config['upload_path'] = 'uploads/';
+			$config['upload_path'] = $temp_track_dir;
 			$config['allowed_types'] = 'mp3';
 			$config['max_size']	= '0';
 
 			$this->load->library('upload', $config);
 			
+			// upload the track(s)
 			if ( ! $this->upload->do_upload('track'))
 			{
 				$data['page_title'] = "Create a Tape";
@@ -41,26 +39,53 @@
 			}	
 			else
 			{
-				$data = array('upload_data' => $this->upload->data());
+				// upload success
+				$upload_data = array('upload_data' => $this->upload->data());
 
-				//$this->load->view('upload_success', $data);
+				$this->load->model('tape_model');
 				
-				$this->save($data);
+				$tape_data = array(
+					'title' => "temp"
+				);
+				
+				// insert
+				$query = $this->tape_model->create($tape_data);
+				
+				$id = $this->db->insert_id();
+				
+				$data = array(
+					'page_title' => "Save Your Tape",
+					'id' => $id,
+					'upload_data' => $upload_data
+				);
+				
+				$this->load->view('save_view', $data);
 			}
 		}
 		
-		function save($tape_data)
+		function save()
 		{
 			$this->load->library('form_validation');
 			
 			$this->form_validation->set_rules('title', 'Title', 'required|trim');
 			$this->form_validation->set_rules('short_desc', 'Description', 'trim');
 			
+			// grab tape_id from POST data
+			$tape_id = $this->input->post('tape_id');
+			
 			// validated?
 			if ($this->form_validation->run() == FALSE)
 			{
-				$data['page_title'] = "Save Your Tape";
-				$data['tape_data'] = $tape_data;
+				// load hidden tape_id field back into view
+				$tape_data = array(
+					'id'	=> $tape_id
+				);
+				
+				$data = array(
+					'page_title'=> "Save Your Tape",
+					'tape_data'	=> $tape_data
+				);
+				
 				$this->load->view('save_view', $data);
 			} else
 			{	
@@ -68,20 +93,38 @@
 				$this->load->model('tape_model');
 				
 				$tape_data = array(
-					'title' => $this->input->post('title'),
-					'short_desc' => $this->input->post('short_desc')
+					'tape_id'	=> $this->input->post('tape_id'),
+					'title'		=> $this->input->post('title'),
+					'short_desc'=> $this->input->post('short_desc')
 				);
 				
-				// insert
-				$query = $this->tape_model->create($tape_data);
+				// update
+				$query = $this->tape_model->update($tape_data);
+				
+				// write tape file (fully spliced tracks) to user's directory
+				$final_tape_path = "uploads/1/".$tape_id.".mp3";
+				$file_data = "SPLICED TRACKS";
+				
+				if(!write_file($final_tape_path, $file_data))
+				{
+					
+				} else
+				{
+					delete_files('uploads/1/temp/');
+					
+					$data = array(
+						'page_title'=> "Share Your Tape",
+						'tape_data'	=> $query
+					);
 
-				$data['page_title'] = "Save Your Tape";
-				$data['tape_data'] = $query;
-				
-				$this->load->view('share_view', $data);
-				
-				// SUCCESS / SHARE PAGE
+					$this->load->view('share_view', $data);
+				}
 			}
+		}
+		
+		function share()
+		{
+			
 		}
 	}
 ?>

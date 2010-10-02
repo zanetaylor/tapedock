@@ -23,5 +23,11 @@ class Tape_model extends Model
 	{
 		$query = $this->db->insert('tapes', $data);
 	}
+	
+	function update($data)
+	{
+		$this->db->where('tape_id', $data['tape_id']);
+		$query = $this->db->update('tapes', $data);
+	}
 }
 ?>
