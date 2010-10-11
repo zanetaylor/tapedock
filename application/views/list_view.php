@@ -1,12 +1,5 @@
-<html>
-	<head>
-		<title><?=$page_title?></title>
-	</head>
-	<body>
-		<ul>
-			<? foreach($tapes as $row) : ?>
-			<li><?=$row->title?></li>
-			<? endforeach; ?>
-		</ul>
-	</body>
-</html>
+<ul>
+	<? foreach($tapes as $row) : ?>
+	<li><a href="<?=site_url('tape/play/'.$row->tape_id)?>"><?=$row->title?></a></li>
+	<? endforeach; ?>
+</ul>
