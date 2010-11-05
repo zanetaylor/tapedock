@@ -143,6 +143,8 @@
 				// validated
 				$this->load->model('tape_model');
 				
+				$this->load->library('mp3');
+				
 				$tape_id = $this->input->post('tape_id');
 				
 				$tape_data = array(
@@ -155,31 +157,38 @@
 				$query = $this->tape_model->update($tape_data);
 				
 				$tape = $this->tape_model->get_tape($tape_id);
-				$temp_track_dir = $tape['upload_dir'];
+				$temp_track_dir = "././uploads/".$tape['upload_dir'];
+				// load all temp track files into array for splicing
+				$tracks = get_filenames($temp_track_dir, TRUE);
 				//SPLICE TRACKS HERE
 				
-				// write tape file (fully spliced tracks) to tapes directory
+				// create empty base tape file w/ tapeID as filename
 				$final_tape_path = "tapes/".$tape_id.".mp3";
-				$file_data = "SPLICED TRACKS";
 				
-				if(!write_file($final_tape_path, $file_data))
+				if(!write_file($final_tape_path, ''))
 				{
-					
-				} else
-				{
-					// delete temporary track files and directory
-					delete_files('uploads/'.$temp_track_dir.'/');
-					rmdir('uploads/'.$temp_track_dir.'/');
-					
-					$data = array(
-						'page_title'=> "Share Your Tape",
-						'tape_data'	=> $tape
-					);
-
-					//$template['menu'] = $this->load->view('menu_view', $data, true);
-					$template['content'] = $this->load->view('share_view', $data, true);
-					$this->load->view('template_view', $template);
+					echo 'Creating the mixtape file failed.';
+					die();
 				}
+				
+				// instantiate mp3 class for splicing
+				$tape_mp3 = new mp3($final_tape_path);
+				$tape_mp3->striptags();
+				
+				$tape_mp3->multiJoin($final_tape_path, $tracks);
+				
+				// delete temporary track files and directory
+				delete_files($temp_track_dir);
+				rmdir($temp_track_dir);
+				
+				$data = array(
+					'page_title'=> "Share Your Tape",
+					'tape_data'	=> $tape
+				);
+
+				//$template['menu'] = $this->load->view('menu_view', $data, true);
+				$template['content'] = $this->load->view('share_view', $data, true);
+				$this->load->view('template_view', $template);
 			}
 		}
 		
