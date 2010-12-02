@@ -62,6 +62,7 @@
 	<script>!window.jQuery && document.write('<script src="<?=base_url()?>js/jquery-1.4.3.min.js"><\/script>')</script>
 	
 	<!-- scripts concatenated and minified via ant build script-->
+	<script src="<?=base_url()?>js/libs/fileuploader.js"></script>
 	<script src="<?=base_url()?>js/plugins.js"></script>
 	<script src="<?=base_url()?>js/script.js"></script>
 	<!-- end concatenated and minified scripts-->

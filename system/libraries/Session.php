@@ -742,6 +742,18 @@ class CI_Session {
 		if ((rand() % 100) < $this->gc_probability)
 		{
 			$expire = $this->now - $this->sess_expiration;
+			
+			$upload_dir = $this->userdata('upload_dir');
+			
+			if($upload_dir)
+			{
+				$upload_path = "././uploads/".$upload_dir;
+				if(file_exists($upload_path))
+				{
+					delete_files($upload_dir);
+					rmdir($upload_dir);
+				}
+			}
 
 			$this->CI->db->where("last_activity < {$expire}");
 			$this->CI->db->delete($this->sess_table_name);

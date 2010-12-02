@@ -3,14 +3,19 @@
 	{
 		function index()
 		{
-			$this->load->model('user_model');
-			
-			$data = array(
-				'page_title'=> "USER"
-			);
-			
-			$template['content'] = $this->load->view('login_view', $data, true);
-			$this->load->view('template_view', $template);
+			$is_logged_in = $this->session->userdata('is_logged_in');
+			if (!$is_logged_in)
+			{
+				redirect('user/login');
+			} else
+			{
+				$data = array(
+					'page_title'=> "USER PROFILE"
+				);
+				
+				$template['content'] = $this->load->view('user/profile_view', $data, true);
+				$this->load->view('template_view', $template);
+			}
 		}
 		
 		function signup()
@@ -19,20 +24,31 @@
 				'page_title'=> "SIGNUP"
 			);
 			
-			$template['content'] = $this->load->view('signup_view', $data, true);
+			$template['content'] = $this->load->view('user/signup_view', $data, true);
 			$this->load->view('template_view', $template);
 		}
 		
 		function login()
 		{
-			$this->load->model('user_model');
-			
-			$data = array(
-				'page_title'=> "Login"
-			);
-			
-			$template['content'] = $this->load->view('login_view', $data, true);
-			$this->load->view('template_view', $template);
+			$is_logged_in = $this->session->userdata('is_logged_in');
+			if (!$is_logged_in)
+			{
+				$data = array(
+					'page_title'=> "Login"
+				);
+				
+				$template['content'] = $this->load->view('user/login_view', $data, true);
+				$this->load->view('template_view', $template);
+			} else
+			{
+				redirect('/');
+			}
+		}
+		
+		function logout()
+		{
+			$this->session->sess_destroy();      
+      		$this->login();
 		}
 		
 		function validate()
@@ -43,13 +59,28 @@
 			
 			if($query) // if validated
 			{
+				//$upload_dir_num = rand();
+				//$upload_dir = "uploads/".$upload_dir_num."/";
+				
+				$user_id = $query['user_id'];
+				$username = $query['username'];
+				
+				do
+				{
+					$upload_dir_num = rand();
+					$upload_dir = $user_id."_".$upload_dir_num;
+					$upload_path = "uploads/".$user_id."_".$upload_dir_num."/";
+				} while(file_exists($upload_path));				
+			
 				$data = array(
-					'username' => $this->input->post('username'),
-					'is_logged_in' => true
+					'user_id'		=> $user_id,
+					'username'		=> $username,
+					'is_logged_in'	=> true,
+					'upload_dir'	=> $upload_dir
 				);
 				
 				$this->session->set_userdata($data);
-				redirect('site/dashboard');
+				redirect('/');
 			} else
 			{
 				$this->index();
@@ -78,7 +109,7 @@
 						'page_title' => 'SIGNED UP!'
 					);
 				
-					$template['content'] = $this->load->view('signup_success_view', $data, true);
+					$template['content'] = $this->load->view('user/signup_success_view', $data, true);
 					$this->load->view('template_view', $template);
 				} else
 				{

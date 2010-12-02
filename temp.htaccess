@@ -2,3 +2,8 @@ RewriteEngine on
 RewriteRule ^$ /index.php [L]
 RewriteCond $1 !^(index\.php|img|css|js|robots\.txt|favicon\.ico)
 RewriteRule ^(.*)$ /btd/index.php/$1 [L]
+
+AuthUserFile /thelongexposure.com/btd/.htpasswd
+AuthType Basic
+AuthName "mtp"
+Require valid-user
