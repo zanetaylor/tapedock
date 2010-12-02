@@ -1,9 +1,3 @@
-<ul>
-	<?php foreach($upload_data['upload_data'] as $item => $value):?>
-	<li><?php echo $item;?>: <?php echo $value;?></li>
-	<?php endforeach; ?>
-</ul>
-
 <?=validation_errors()?>
 <?=form_open('tape/save')?>
 <?
@@ -16,6 +10,11 @@
 		'name'	=> 'short_desc',
 		'id'	=> 'short_desc',
 		'value'	=> set_value('short_desc')
+	);
+	$public_checkbox = array(
+		'name'	=> 'public',
+		'id'	=> 'public',
+		'value'	=> set_value('public')
 	);
 	$submit_button = array(
 		'id'		=> 'submit',
@@ -31,6 +30,8 @@
 			<dd><?=form_input($title_input)?></dd>
 		<dt><label for="short_desc">Description</label></dt>
 			<dd><?=form_input($short_desc_input)?></dd>
+		<dt><label for="short_desc">Public?</label></dt>
+			<dd><?=form_checkbox($public_checkbox)?></dd>
 			
 		<dt>
 			<?=form_button($submit_button)?>
