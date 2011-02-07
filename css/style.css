@@ -1,21 +1,11 @@
-/* 
-  html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
-  v1.4 2009-07-27 | Authors: Eric Meyer & Richard Clark
-  html5doctor.com/html-5-reset-stylesheet/
-*/
+/*  HTML5 ✰ Boilerplate  */
 
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
-del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var,
-b, i,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,  footer, header, hgroup, 
+menu, nav, section, summary, time, mark, audio, video {
   margin:0;
   padding:0;
   border:0;
@@ -24,293 +14,248 @@ time, mark, audio, video {
   vertical-align:baseline;
   background:transparent;
 }                  
-
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section { 
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
     display:block;
 }
-
 nav ul { list-style:none; }
-
 blockquote, q { quotes:none; }
-
 blockquote:before, blockquote:after,
 q:before, q:after { content:''; content:none; }
-
 a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; }
-
 ins { background-color:#ff9; color:#000; text-decoration:none; }
-
 mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold; }
-
 del { text-decoration: line-through; }
-
 abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help; }
-
-/* tables still need cellspacing="0" in the markup */
 table { border-collapse:collapse; border-spacing:0; }
-
 hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0; }
-
 input, select { vertical-align:middle; }
 
-/* END RESET CSS */
 
-
-/* fonts.css from the YUI Library: developer.yahoo.com/yui/
-   Refer to developer.yahoo.com/yui/3/cssfonts/ for font sizing percentages
-
-  There are three custom edits:
-   * remove arial, helvetica from explicit font stack
-   * we normalize monospace styles ourselves
-   * table font-size is reset in the HTML5 reset above so there is no need to repeat
-*/
-body { font:13px/1.231 sans-serif; *font-size:small; } /* hack retained to preserve specificity */
-
+body { font:13px/1.231 sans-serif; *font-size:small; } 
 select, input, textarea, button { font:99% sans-serif; }
-
-/* normalize monospace sizing 
- * en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome
- */
 pre, code, kbd, samp { font-family: monospace, sans-serif; }
- 
 
-/* 
- * minimal base styles 
- */
-
-
-body, select, input, textarea { 
-  /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */ 
-  color: #444; 
-  /* set your base font here, to apply evenly */
-  /* font-family: Georgia, serif;  */   
-}
-
-/* Headers (h1,h2,etc) have no default font-size or margin,
-   you'll want to define those yourself. */ 
+body, select, input, textarea {   color: #444; }
 h1,h2,h3,h4,h5,h6 { font-weight: bold; }
-
-/* always force a scrollbar in non-IE */ 
 html { overflow-y: scroll; }
 
- 
-/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: none; }
-
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
-
 
 ul, ol { margin-left: 1.8em; }
 ol { list-style-type: decimal; }
 
-/* Remove margins for navigation lists */
 nav ul, nav li { margin: 0; } 
-
 small { font-size: 85%; }
 strong, th { font-weight: bold; }
-
 td, td img { vertical-align: top; } 
-
 sub { vertical-align: sub; font-size: smaller; }
 sup { vertical-align: super; font-size: smaller; }
-
-pre { 
-  padding: 15px; 
-  
-  /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
-  white-space: pre; /* CSS2 */
-  white-space: pre-wrap; /* CSS 2.1 */
-  white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
-  word-wrap: break-word; /* IE */
-}
- 
-textarea { overflow: auto; } /* thnx ivannikolic! www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
-
-.ie6 legend, .ie7 legend { margin-left: -7px; } /* thnx ivannikolic! */
-
-/* align checkboxes, radios, text inputs with their label
-   by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+pre {  padding: 15px;  white-space: pre;  white-space: pre-wrap;  white-space: pre-line;  word-wrap: break-word; }
+textarea { overflow: auto; } 
+.ie6 legend, .ie7 legend { margin-left: -7px; } 
 input[type="radio"] { vertical-align: text-bottom; }
 input[type="checkbox"] { vertical-align: bottom; }
 .ie7 input[type="checkbox"] { vertical-align: baseline; }
 .ie6 input { vertical-align: text-bottom; }
-
-/* hand cursor on clickable input elements */
 label, input[type=button], input[type=submit], button { cursor: pointer; }
- 
-/* webkit browsers add a 2px margin outside the chrome of form elements */  
 button, input, select, textarea { margin: 0; }
-
-/* colors for form validity */
 input:valid, textarea:valid   {  }
-input:invalid, textarea:invalid { 
-      border-radius: 1px;
-    -moz-box-shadow: 0px 0px 5px red; 
- -webkit-box-shadow: 0px 0px 5px red; 
-         box-shadow: 0px 0px 5px red;
-}
+input:invalid, textarea:invalid { border-radius: 1px;  -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red;  box-shadow: 0px 0px 5px red; }
 .no-boxshadow input:invalid, 
 .no-boxshadow textarea:invalid { background-color: #f0dddd; }
 
-
-/* These selection declarations have to be separate.
-   No text-shadow: twitter.com/miketaylr/status/12228805301 
-   Also: hot pink. */
 ::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
 ::selection { background:#FF5E99; color:#fff; text-shadow: none; } 
-
-/*  j.mp/webkit-tap-highlight-color */
 a:link { -webkit-tap-highlight-color: #FF5E99; } 
 
-/* make buttons play nice in IE:    
-   www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
 button {  width: auto; overflow: visible; }
- 
-/* bicubic resizing for non-native sized IMG: 
-   code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
 .ie7 img { -ms-interpolation-mode: bicubic; }
 
-
-
-/* 
- * Non-semantic helper classes 
- */
-
-/* for image replacement */
 .ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
-
-/* Hide for both screenreaders and browsers
-   css-discuss.incutio.com/wiki/Screenreader_Visibility */
 .hidden { display: none; visibility: hidden; } 
-
-/* Hide only visually, but have it available for screenreaders 
-   www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden  */
-.visuallyhidden { position: absolute !important;    
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px); }
-
-/* Hide visually and from screenreaders, but maintain layout */
+.visuallyhidden { position: absolute !important; clip: rect(1px 1px 1px 1px);  clip: rect(1px, 1px, 1px, 1px); }
 .invisible { visibility: hidden; }
-
-/* >> The Magnificent CLEARFIX: Updated to prevent margin-collapsing on child elements << j.mp/bestclearfix */
-.clearfix:before, .clearfix:after {
-  content: "\0020"; display: block; height: 0; visibility: hidden;	
-} 
-
+.clearfix:before, .clearfix:after {  content: "\0020"; display: block; height: 0; visibility: hidden;	 } 
 .clearfix:after { clear: both; }
-/* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
 .clearfix { zoom: 1; }
 
 
-/* @font-face */
-@font-face {
-	font-family: 'LeagueGothicRegular';
-	src: url('League_Gothic-webfont.eot');
-	src: local('☺'), url('League_Gothic-webfont.woff') format('woff'), url('League_Gothic-webfont.ttf') format('truetype'), url('League_Gothic-webfont.svg#webfontpm5EArBj') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-
-
  /* Primary Styles
-  *  Author: Zane Taylor
-  */
-
+    Author: Zane Taylor
+ */
+html, body { height: 100%; }
+html { background: #fff url(../images/bg.png) fixed; }
 body {
-	background: #f7f3e3;
-}
-a, a:link, a:visited {
-	color: #6e897a;	
+	font-family: "Helvetica Neue", Helvetica, Arial, sans; color: #666;
+	background: url(../images/header_bg.png) center 16px no-repeat;
 }
 #wrap {
 	position: relative;
-	margin: 200px auto 0 auto;
-	width: 840px;
+	margin: 0 auto; padding: 0 10px 0 10px;
+	width: 780px; min-height: 100%;
+	/*background: url(../images/grid_16.png);*/
 }
-navigation {
-	position: absolute; top: 0; right: 0;
-}
-
-
-/* header */
 header {
-	margin: 0 0 40px 0;
-	height: 50px;
+	float: left;
+	margin: 0 0 22px 0; padding: 16px 0 0 0;
+	height: 48px;
+	background: url(../images/tagline_bg.png) left 16px no-repeat;
 }
 #logo {
-	position: absolute; top: 0; left: 0;
-	width: 386px; height: 50px;
+	float: left;
+	width: 178px; height: 48px;
 	background: url(../images/logo.png) no-repeat;
 }
-
-
-
-/* navigation */
-navigation ul {
-	list-style: none;
-}
-navigation li {
-	float: left;
-	margin: 0 0 0 20px;
-	line-height: 50px;
-}
-navigation a {
-	display: block;
-	padding: 0 20px;
-	font-family: "LeagueGothicRegular", Helvetica, Arial, sans;
-	font-size: 215%; text-transform: uppercase; text-decoration: none;
+#tagline {
+	float: right;
+	padding: 0 20px 0 0;
 	line-height: 48px;
-	-webkit-border-radius: 48px;
-	-moz-border-radius: 48px;
-	border-radius: 48px;
-	background: #efe8ca;
+	color: #999; font-weight: 200; font-style: italic;
 }
-
-
-/* tape list */
-.tape-list {
-	list-style: none;
+header:hover #tagline { color: #ccc; }
+#nav {
+	float: right;
+	padding: 16px 0 0 1px;
+}
+#nav li {
+	position: relative;
+	float: left;
+	margin: 0 1px 0 0;
+}
+#nav a {
+	float: left;
+	padding: 0 20px;
+	line-height: 48px;
+	color: #dfdfdf; font-size: 153.9%; text-decoration: none; font-weight: 300;
+	background: #333;
+}
+#nav a:hover {
+	color: #333;
+	background: url(../images/nav_blank.png);
+}
+#nav ul ul {
+	visibility: hidden;
+	position: absolute; top: 48px; right: 0;
+	width: 600px;
+}
+#nav li:hover ul { visibility: visible; }
+#nav ul ul li {
+	float: right;
 	margin: 0;
 }
-.tape-list li {
-	position: relative;
-	margin: 0 0 3px 0;
-	height: 48px;
-	line-height: 48px;
-}
-.tape-list .title:hover {
-	background: #fcfaf4;
-}
-.tape-list a {
-	height: 48px;
-	text-decoration: none;
-}
-.tape-list .title {
-	display: block;
-	color: #837f64; font-size: 138.5%;
-	-webkit-border-radius: 48px;
-	-moz-border-radius: 48px;
-	border-radius: 48px;
-}
-.tape-list .title span {
+#nav ul ul li a {
 	float: left;
-	padding: 0 20px;
-	-webkit-border-radius: 48px;
-	-moz-border-radius: 48px;
-	border-radius: 48px;
-	background: #efe8ca;
+	line-height: 32px;
+	font-size: 108%;
 }
-.tape-list a:hover span { background: 0; }
-.tape-list .creator {
-	position: absolute; top: 0; right: 0;
-	padding: 0 20px 0 0;
-	font-size: 108%; font-weight: bold;
+#main {
+	clear: both;
+	padding: 0 0 64px 0;
+}
+#content, #sidebar {
+	float: left;
+}
+#content {
+	margin: 0 20px 0 0;
+	width: 540px;
+}
+#sidebar {
+	width: 220px;
+}
+h1 {
+	margin: 0 0 9px 0;
+	font-size: 197%; font-weight: 200;
 }
 
+section {
+	position: relative;
+	padding: 0 10px;
+	border: 1px solid #ccc;
+	background: #fff;
+}
+section .shadow {
+	position: absolute; bottom: -3px; right: -3px; z-index: -1;
+	width: 100%; height: 100%;
+	background: #666;
+	opacity: .16;
+}
+h3 {
+	margin: 0 0 9px 0;
+	font-size: 123.1%; font-weight: normal;
+}
+ol {
+	list-style: none;
+	margin: 0; padding: 0;
+}
+ol li {
+	line-height: 32px;
+	border-bottom: 1px dotted #ccc;
+}
+ol li:last-child { border: 0; }
 
+#main a { color: #333; font-weight: bold; text-decoration: none; }
+#main a:hover { text-decoration: underline; }
+
+/* FOOTER */
+footer {
+	clear: both;
+	position: relative;
+	margin: -64px 0 0 0;
+	height: 64px;
+	line-height: 32px;
+	background: url(../images/footer_bg.png) bottom repeat-x;
+}
+footer li {
+	display: inline;
+	margin: 0 16px 0 0;
+}
+#footer a {
+	color: #000; font-weight: 500; text-decoration: none;
+}
+#footer a:hover { text-decoration: underline; }
+footer ul, #copyright {
+	margin: 0 auto;
+	width: 780px;
+}
+#copyright {
+	color: #888; font-size: 85%; font-weight: 200;
+}
+
+/* HOME */
+#splash, #signup {
+	float: left;
+}
+#splash {
+	margin-right: 20px;
+	width: 438px;
+}
+#signup { width: 278px; }
+
+/* BUTTONS */
+button, #main a.button {
+	float: right;
+	margin: 0;
+	padding: 0 16px;
+	height: 32px;
+	line-height: 32px;
+	color: #ccc; font-size: 138.5%; text-decoration: none; font-weight: 300;
+	border: 0;
+	background: #333;
+}
+button:hover, #main a.button:hover {
+	color: #fff;
+	background: #444;
+}
+
+/* FORMS */
+form dt {
+	margin: 0 0 4px 0;
+}
+input {
+	border: 1px solid #ccc;
+}
 
 /* file uploader */
 .qq-uploader { position:relative; width: 100%;}
@@ -351,46 +296,35 @@ navigation a {
 
 
 
-/*
- * Media queries for responsive design
- * These follow after primary styles so they will successfully override. 
- */
+
+
+
+
 
 @media all and (orientation:portrait) { 
-  /* Style adjustments for portrait mode goes here */
   
 }
 
 @media all and (orientation:landscape) { 
-  /* Style adjustments for landscape mode goes here */
   
 }
 
-/* Grade-A Mobile Browsers (Opera Mobile, iPhone Safari, Android Chrome)  
-   Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
 @media screen and (max-device-width: 480px) {
   
   
-  /* Uncomment if you don't want iOS and WinMobile to mobile-optimize the text for you
-     j.mp/textsizeadjust 
-  html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
+  /* html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
 }
 
-/* 
- * print styles
- * inlined to avoid required HTTP connection www.phpied.com/delay-loading-your-print-css/ 
- */
 @media print {
   * { background: transparent !important; color: #444 !important; text-shadow: none !important; }
   a, a:visited { color: #444 !important; text-decoration: underline; }
   a:after { content: " (" attr(href) ")"; } 
   abbr:after { content: " (" attr(title) ")"; }
-  .ir a:after { content: ""; }  /* Don't show links for images */
+  .ir a:after { content: ""; }  
   pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
-  thead { display: table-header-group; } /* css-discuss.incutio.com/wiki/Printing_Tables */ 
+  thead { display: table-header-group; }  
   tr, img { page-break-inside: avoid; }
   @page { margin: 0.5cm; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3{ page-break-after: avoid; }
 }
-

@@ -10,11 +10,9 @@
 	<!-- www.phpied.com/conditional-comments-block-downloads/ -->
 	<!--[if IE]><![endif]-->
 	
-	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
-	Remove this if you use the .htaccess -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
-	<title><?=$page_title?></title>
+	<title>Tapedock: <?=$page_title?></title>
 	
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -44,18 +42,32 @@
 
 	<div id="wrap">
 		<header>
-			<a id="logo" class="ir" href="<?=base_url()?>">the mixtape project</a>
+			<a id="logo" class="ir" href="<?=base_url()?>">tapedock</a>
+			<span id="tagline">share your music like it's 1989.</span>
 		</header>
-		<navigation>
+		<nav id="nav">
 			<? $this->load->view('menu_view'); ?>
-		</navigation>
-		<section>
+		</nav>
+		<div id="main">
+			<? if (isset($error)) echo $error; ?>
 			<?=$content?>
-		</section>
-		<footer>
-			<p>&copy; Copyright 2010 Zane Taylor</p>
-		</footer>
+		</div>
 	</div><!--! end of #wrap -->
+	<footer id="footer">
+		<nav>
+			<ul>
+				<li><a href="<?=base_url()?>">home</a></li>
+				<li><a href="<?=site_url("site/about")?>">about</a></li>
+				<li><a href="<?=site_url("site/faq")?>">faq</a></li>
+				<li><a href="<?=site_url("user")?>">sign up</a></li>
+				<li><a href="<?=site_url("blog")?>">blog</a></li>
+				<li><a href="<?=site_url("site/terms")?>">terms</a></li>
+				<li><a href="<?=site_url("site/privacy")?>">privacy</a></li>
+				<li><a href="<?=site_url("site/feedback")?>">feedback</a></li>
+			</ul>
+		</nav>
+		<p id="copyright">&copy; Copyright 2011 Zane Taylor</p>
+	</footer>
 	
 	<!-- Grab Google CDN's jQuery. fall back to local if necessary -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
@@ -72,8 +84,7 @@
 	<script src="<?=base_url()?>js/profiling/config.js?v=1"></script>
 	<!-- end profiling code -->
 	
-	<!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet 
-	change the UA-XXXXX-X to be your site's ID -->
+	<!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet -->
 	<script>
 		var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
 		(function(d, t) {

@@ -6,6 +6,21 @@
 			parent::Model();
 		}
 		
+		function get_user($username)
+		{
+			if ($username)
+			{
+				$this->db->where('username', $username);
+				
+				$query = $this->db->get('users');
+				
+				if ($query->num_rows == 1)
+				{
+					return $query->row_array();
+				} else return false;
+			} else return false;
+		}
+		
 		function validate()
 		{
 			$this->db->where('username', $this->input->post('username'));
@@ -13,7 +28,7 @@
 			
 			$query = $this->db->get('users');
 			
-			if($query->num_rows == 1)
+			if ($query->num_rows == 1)
 			{
 				return $query->row_array();
 			} else return false;

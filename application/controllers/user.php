@@ -1,7 +1,37 @@
 <?php
 	class User extends Controller
 	{
-		function index()
+		function __construct()
+		{
+			parent::__construct();
+			
+			$is_logged_in = $this->session->userdata('is_logged_in');
+			
+			if ($is_logged_in)
+			{
+				$user = array(
+					'user_id'	=> $this->session->userdata('user_id'),
+					'username'	=> $this->session->userdata('username')
+				);
+				$this->load->vars($user);
+			}
+		}
+	
+		function index($error_msg=0)
+		{
+			$is_logged_in = $this->session->userdata('is_logged_in');
+			if (!$is_logged_in)
+			{
+				$this->login($error_msg);
+				//redirect('user/login');
+			} else
+			{
+				$username = $this->session->userdata('username');
+				$this->show($username);
+			}
+		}
+		
+		function show($username=0)
 		{
 			$is_logged_in = $this->session->userdata('is_logged_in');
 			if (!$is_logged_in)
@@ -9,12 +39,25 @@
 				redirect('user/login');
 			} else
 			{
-				$data = array(
-					'page_title'=> "USER PROFILE"
-				);
+				$this->load->model('user_model');
 				
-				$template['content'] = $this->load->view('user/profile_view', $data, true);
-				$this->load->view('template_view', $template);
+				if (!$username)
+				{
+					$username = $this->session->userdata('username');
+				}
+				
+				$user = $this->user_model->get_user($username);
+				
+				if ($user)
+				{
+					$data = array(
+						'page_title'=> "USER PROFILE",
+						'user'		=> $user
+					);
+					
+					$template['content'] = $this->load->view('user/profile_view', $data, true);
+					$this->load->view('template_view', $template);
+				} else $this->index();
 			}
 		}
 		
@@ -28,7 +71,7 @@
 			$this->load->view('template_view', $template);
 		}
 		
-		function login()
+		function login($error_msg=0)
 		{
 			$is_logged_in = $this->session->userdata('is_logged_in');
 			if (!$is_logged_in)
@@ -36,8 +79,14 @@
 				$data = array(
 					'page_title'=> "Login"
 				);
-				
 				$template['content'] = $this->load->view('user/login_view', $data, true);
+				
+				if ($error_msg)
+				{
+					$error_data['error_msg'] = $error_msg;
+					$template['error'] = $this->load->view('error_view', $error_data, true);
+				}
+
 				$this->load->view('template_view', $template);
 			} else
 			{
@@ -48,7 +97,7 @@
 		function logout()
 		{
 			$this->session->sess_destroy();      
-      		$this->login();
+      		redirect('/');
 		}
 		
 		function validate()
@@ -57,7 +106,7 @@
 			
 			$query = $this->user_model->validate();
 			
-			if($query) // if validated
+			if ($query) // if validated
 			{
 				//$upload_dir_num = rand();
 				//$upload_dir = "uploads/".$upload_dir_num."/";
@@ -83,7 +132,8 @@
 				redirect('/');
 			} else
 			{
-				$this->index();
+				$error_msg = "Login failed. Double-check your username and password.";
+				$this->index($error_msg);
 			}
 		}
 		

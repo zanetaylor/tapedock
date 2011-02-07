@@ -1,6 +1,22 @@
-<?=form_open('user/validate')?>
-<?=form_input('username', 'Username')?>
-<?=form_password('password', 'Password')?>
-<?=form_submit('submit', 'Login')?>
-<?=anchor('user/signup', 'Create Account')?>
-<?=form_close()?>
+<?
+	$button_params = array(
+		'type' => 'submit',
+		'content' => 'sign in'
+	)
+?>
+<h1>Sign In</h1>
+<section>
+	<?=form_open('user/validate')?>
+		<fieldset>
+			<dl>
+				<dt>Username</dt>
+				<dd><?=form_input('username', 'Username')?></dd>
+				<dt>Password</dt>
+				<dd><?=form_password('password', 'Password')?></dd>
+			</dl>
+			<p><?=form_button($button_params)?></p>
+		</fieldset>
+	<?=form_close()?>
+	<p class="callout">Not a member yet? <?=anchor('user/signup', 'Sign up!')?></p>
+	<div class="shadow"></div>
+</section>

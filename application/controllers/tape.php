@@ -1,10 +1,23 @@
 <?php
 	class Tape extends Controller
 	{
-		function index()
+		function __construct()
 		{
-			redirect('/');
+			parent::__construct();
+			
+			$is_logged_in = $this->session->userdata('is_logged_in');
+			
+			if ($is_logged_in)
+			{
+				$user = array(
+					'user_id'	=> $this->session->userdata('user_id'),
+					'username'	=> $this->session->userdata('username')
+				);
+				$this->load->vars($user);
+			}
 		}
+		
+		function index() { redirect('/'); }
 		
 		/* this plays an individual tape or shows a list of tapes */
 		function play($tape_id=0)
@@ -21,10 +34,7 @@
 				
 				$template['content'] = $this->load->view('tape/play_view', $data, true);
 				$this->load->view('template_view', $template);
-			} else
-			{
-				redirect('/');
-			}
+			} else redirect('/');
 		}
 		
 		/* this loads initial track file upload form */
@@ -94,19 +104,9 @@
 			$this->form_validation->set_rules('title', 'Title', 'required|trim');
 			$this->form_validation->set_rules('short_desc', 'Description', 'trim');
 			
-			// grab tape_id from POST data
-			//$tape_id = $this->input->post('tape_id');
-			
 			// validated?
 			if ($this->form_validation->run() == FALSE)
-			{
-				// load hidden tape_id field back into view
-				/*
-				$tape_data = array(
-					'id'	=> $tape_id
-				);
-				*/
-				
+			{				
 				$data = array(
 					'page_title'=> "validation failed"
 				);
@@ -129,14 +129,6 @@
 				$tape_id = $this->tape_model->create($tape_data);
 				
 				$tape = $this->tape_model->get_tape($tape_id);
-				
-				// update
-				//$query = $this->tape_model->update($tape_data);
-				
-				//$tape = $this->tape_model->get_tape($tape_id);
-				
-				
-				
 				
 				/* begin track file manipulation */
 				
@@ -177,7 +169,7 @@
 		
 		function share()
 		{
-			
+			$this->load->model('friend_model');
 		}
 	}
 ?>
