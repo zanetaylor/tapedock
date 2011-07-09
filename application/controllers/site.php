@@ -26,7 +26,7 @@
 				$this->load->model('tape_model');
 			
 				$data = array(
-					'page_title'=> "Welcome to the MTP!",
+					'page_title'=> "Home",
 					'tapes'		=> $this->tape_model->get_latest()
 				);
 				
@@ -64,7 +64,7 @@
 				$user_tapes = $this->tape_model->get_user_tapes($user_id);
 				
 				$data = array(
-					'page_title'	=> "DASHBOARD",
+					'page_title'	=> "Dashboard",
 					'user_tapes'	=> $user_tapes
 				);
 			
@@ -73,13 +73,17 @@
 			}
 		}
 		
-		function about()
+		function page($url_title)
 		{
+			$this->load->model('page_model');
+			
+			$page = $this->page_model->get_page($url_title);
+			
 			$data = array(
-				'page_title'	=> "What is This?",
-				'content'		=> "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget lorem leo, a tempor nisi. Phasellus non lacinia nulla. Donec sit amet arcu mi. Etiam non quam imperdiet nibh auctor tempor sed non turpis. Fusce nunc elit, interdum a viverra non, convallis quis augue. Vestibulum venenatis malesuada arcu, eget tincidunt purus luctus a. Sed sagittis leo et velit volutpat faucibus. Maecenas dapibus commodo ante, eget varius odio sagittis vel. Sed sodales, nibh id aliquet elementum, mi ante tempus ipsum, et viverra enim elit sit amet lectus. In massa erat, convallis at varius non, faucibus in nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec convallis dui vel mauris molestie auctor feugiat nulla consectetur. Curabitur ut metus ac velit adipiscing ultricies. Etiam et viverra eros.</p>"
+				'page_title'	=> $page['title'],
+				'content'		=> $page['content']
 			);
-		
+			
 			$template['content'] = $this->load->view('page_view', $data, true);
 			$this->load->view('template_view', $template);
 		}

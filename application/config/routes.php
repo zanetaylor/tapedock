@@ -49,6 +49,7 @@ $route['signup'] = "user/signup";
 
 $route['user/(!login|!logout|!validate)'] = "user/show/$1";
 
+$route['site/(:any)'] = "site/page/$1";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

@@ -7,12 +7,12 @@
 			<li><a href="/">dashboard</a></li>
 			<li><a href="/">profile</a></li>
 			<li><a href="/">settings</a></li>
-			<li><a href="<?=site_url("user/logout")?>">sign out</a></li>
+			<li><a href="<?=site_url("logout")?>">sign out</a></li>
 		</ul>
 	</li>
 	<!-- <li><a href="<?=site_url("logout")?>">sign out</a></li> -->
 	<? } else { ?>
 	<li><a href="<?=site_url("site/about")?>">what?</a></li>
-	<li><a href="<?=site_url("user")?>">sign in</a></li>
+	<li><a href="<?=site_url("login")?>">sign in</a></li>
 	<? } ?>
 </ul>

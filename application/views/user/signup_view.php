@@ -19,7 +19,7 @@
 				<dd><?=form_password('password2', set_value('password2', 'Confirm Password'))?></dd>
 			</dl>
 		</fieldset>
-		<p><?=form_button($button_params)?></p>
+		<p class="clearfix"><?=form_button($button_params)?></p>
 	<?=form_close()?>
 	
 	<?=validation_errors('<p class="error">')?>
